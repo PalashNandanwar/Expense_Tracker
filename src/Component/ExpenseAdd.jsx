@@ -29,12 +29,19 @@ const ExpenseAdd = ({ onClose, editingExpense }) => {
         e.preventDefault();
         const expenseAmount = Number(expense.amount) || 0;
 
+        if (totalBudget === 0) {
+            alert("You cannot add expenses because your budget is set to ₹0. Please set a budget first.");
+            onClose(); // Close the modal if budget is 0
+            return;
+        }
+
         // Calculate total spent so far
         const totalSpent = expenses.reduce((sum, exp) => sum + Number(exp.amount), 0);
         const remainingBudget = totalBudget - totalSpent + (editingExpense ? Number(editingExpense.amount) : 0);
 
         if (expenseAmount > remainingBudget) {
-            alert("Total budget exceeded! Lower your expenses.");
+            alert(`Insufficient budget! You only have ₹${remainingBudget} remaining.`);
+            onClose(); // Close the modal if expense exceeds budget
             return;
         }
 
@@ -81,7 +88,11 @@ const ExpenseAdd = ({ onClose, editingExpense }) => {
                         <button type="button" className="bg-red-500 text-white px-4 py-2 rounded" onClick={onClose}>
                             Cancel
                         </button>
-                        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+                        <button
+                            type="submit"
+                            className={`px-4 py-2 rounded ${totalBudget === 0 ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 text-white hover:bg-green-600"}`}
+                            disabled={totalBudget === 0}
+                        >
                             {editingExpense ? "Update Expense" : "Add Expense"}
                         </button>
                     </div>
