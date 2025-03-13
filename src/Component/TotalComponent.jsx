@@ -39,18 +39,18 @@ const TotalComponent = () => {
             {/* Budget Details */}
             <div className="flex gap-4 items-center justify-center">
                 <p className="w-full h-fit text-lg font-semibold bg-white shadow-md px-4 py-2 rounded-md border border-gray-300">
-                    Total Budget: <span className="text-blue-600 font-bold">₹{totalBudget}</span>
+                    Total Budget: <span className="text-blue-600 font-bold">${totalBudget}</span>
                 </p>
 
                 <p className="w-full h-fit text-lg font-semibold bg-white shadow-md px-4 py-2 rounded-md border border-gray-300">
-                    Total Expenses: <span className="text-red-500 font-bold">₹{totalExpenses}</span>
+                    Total Expenses: <span className="text-red-500 font-bold">${totalExpenses}</span>
                 </p>
             </div>
 
             {/* Remaining Budget */}
             <p className={`text-lg font-semibold bg-white shadow-md px-4 py-2 rounded-md border border-gray-300 my-6 
                 ${remainingBudget < 0 ? "text-red-700" : "text-green-700"}`}>
-                Remaining Budget: <span className="font-bold">₹{remainingBudget}</span>
+                Remaining Budget: <span className="font-bold">${remainingBudget}</span>
             </p>
 
             {remainingBudget < 0 && (

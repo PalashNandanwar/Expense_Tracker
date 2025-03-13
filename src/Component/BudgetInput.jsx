@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalBudget } from "../Redux/expenseSlice";
+import { MdOutlinePublishedWithChanges } from "react-icons/md";
+import { MdClear } from "react-icons/md";
+
+
 
 const BudgetInput = () => {
     const dispatch = useDispatch();
@@ -15,6 +19,12 @@ const BudgetInput = () => {
         } else {
             alert("Please enter a valid budget amount!");
         }
+    };
+
+    const clearBudget = () => {
+        dispatch(setTotalBudget(0)); // Reset budget in Redux store
+        setBudget(""); // Reset local input state
+        setIsEditing(true); // Show input field again
     };
 
     return (
@@ -38,14 +48,22 @@ const BudgetInput = () => {
                 </div>
             ) : (
                 <div className="flex flex-col items-center">
-                    <p className="text-lg font-semibold bg-white shadow-md px-6 py-3 rounded-md border border-gray-400 mt-4">
-                        Your Daily Budget: <span className="text-blue-600 font-bold">₹{totalBudget}</span>
+                    <p className="text-lg text-center flex flex-col font-semibold bg-white shadow-md px-6 py-3 rounded-md border border-gray-400 mt-4">
+                        Your Daily Budget <span className="text-blue-600 font-bold">${totalBudget}</span>
                     </p>
-                    <button
-                        onClick={() => setIsEditing(true)}
-                        className="mt-3 bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600 transition-all duration-300">
-                        Change Budget
-                    </button>
+                    <div className=" flex gap-4">
+                        <button
+                            onClick={() => setIsEditing(true)}
+                            className="flex items-center gap-4 mt-3 bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600 transition-all duration-300">
+                            <span><MdOutlinePublishedWithChanges /></span> Budget
+                        </button>
+
+                        <button
+                            onClick={clearBudget}
+                            className="flex items-center gap-4 mt-3 bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600 transition-all duration-300">
+                            <span><MdClear /></span> Budget
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
