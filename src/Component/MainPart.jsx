@@ -1,8 +1,8 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import TotalComponent from "./TotalComponent";
-import ShowExpenses from "./showExpenses";
 import ExpenseChart from "./ExpenseChart";
+import ExpensesList from "./ExpensesList";
 
 const MainPart = () => {
     return (
@@ -14,7 +14,7 @@ const MainPart = () => {
             <div className="w-3/4 flex flex-col">
                 <div className="flex w-full h-[50%] gap-4">
                     <TotalComponent />
-                    <ShowExpenses />
+                    <ExpensesList />
                 </div>
 
                 <ExpenseChart />

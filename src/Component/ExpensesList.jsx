@@ -1,7 +1,17 @@
+// import React from 'react'
+
+// const ExpensesList = () => {
+//     return (
+//         <div>ExpensesList</div>
+//     )
+// }
+
+// export default ExpensesList
+
 import React from "react";
 import { useSelector } from "react-redux";
 
-const ShowExpenses = () => {
+const ExpensesList = () => {
     const expenses = useSelector((state) => state.expenses.expenses || []);
 
     console.log("Updated Expenses:", expenses);
@@ -48,4 +58,4 @@ const ShowExpenses = () => {
     );
 };
 
-export default ShowExpenses;
+export default ExpensesList;
